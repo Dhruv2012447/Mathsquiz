@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maths Ch 5 - Flip Cards</title>
+  <style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* dark teal gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  color: #fff;
+}
+
+h1 {
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #f9f9f9;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* === CARD === */
+.card {
+  width: 480px;
+  height: 320px;
+  perspective: 1400px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg) scale(1.03);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+.card-front {
+  background: linear-gradient(135deg, #1d2671, #c33764); /* blue → pink */
+}
+
+.card-back {
+  background: linear-gradient(135deg, #ff512f, #dd2476); /* orange → magenta */
+  transform: rotateY(180deg);
+}
+
+.card-front h2, .card-back h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.card-front p, .card-back p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* === INDICATOR === */
+/* === INDICATOR === */
+.card-indicator {
+  margin-top: 50px;       /* space above */
+  margin-bottom: 10px;    /* space below */
+  font-size: 16px;
+  font-weight: 500;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+
+/* === PROGRESS BAR === */
+.progress-bar {
+  width: 60%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00c6ff, #0072ff); /* cyan → blue */
+  transition: width 0.5s ease;
+}
+
+/* === BUTTONS === */
+.buttons {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 28px;
+  border: none;
+  background: linear-gradient(135deg, #11998e, #38ef7d); /* green gradient */
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #38ef7d, #11998e);
+  transform: translateY(-3px);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>📘 Maths Chapter 5 - Squares & Roots</h1>
+
+  <div class="card" id="card">
+    <div class="card-inner" id="card-inner">
+      <div class="card-front" id="front"></div>
+      <div class="card-back" id="back"></div>
+    </div>
+  </div>
+
+  <div class="card-indicator" id="indicator"></div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="prevCard()">⬅ Previous</button>
+    <button onclick="nextCard()">Next ➡</button>
+  </div>
+
+  <script>
+  const cards = [
+  {
+    front: "<h2>Introduction</h2><p>Overview of Squares & Square Roots</p>",
+    back: "<h2>Details</h2><p>A square of a number means multiplying it by itself. Example: 7² = 49. The square root is the reverse process, i.e. a number which, when multiplied by itself, gives the original number. Example: √64 = 8. <br><br>This chapter covers: properties of square numbers, methods of finding square roots (subtraction, factorization, division, estimation), and applications in geometry, algebra & real life.</p>"
+  },
+
+  {
+    front: "<h2>What is a Square?</h2><p>Definition & Basics</p>",
+    back: "<h2>Examples</h2><p>If a number is multiplied by itself → square number. <br><br>✔ 4² = 4 × 4 = 16 <br>✔ 9² = 9 × 9 = 81 <br><br>Squares are always non-negative. <br><br><b>Note:</b> Negative × Negative = Positive. So (-5)² = 25.</p>"
+  },
+
+  {
+    front: "<h2>Properties of Squares</h2><p>Important Rules</p>",
+    back: "<h2>Details</h2><p>✔ Square of an even number is always even.<br>✔ Square of an odd number is always odd.<br>✔ Numbers ending with 2, 3, 7, or 8 can never be perfect squares.<br>✔ Perfect squares only end with 0, 1, 4, 5, 6, 9.<br>✔ There are exactly n perfect squares less than n².<br><br>Example: 25 ✔ is a perfect square, but 27 ✘ is not.</p>"
+  },
+
+  {
+    front: "<h2>Patterns of Squares</h2><p>Interesting Observations</p>",
+    back: "<h2>Examples</h2><p>✔ Sum of first n odd numbers = n².<br>Example: 1 + 3 + 5 + 7 + 9 = 25 = 5².<br><br>✔ Difference between consecutive squares is always odd.<br>Example: 7² - 6² = 49 - 36 = 13.<br><br>✔ Formula for sum of squares: 1² + 2² + … + n² = n(n+1)(2n+1)/6.</p>"
+  },
+
+  {
+    front: "<h2>Special Numbers</h2><p>Shortcuts & Tricks</p>",
+    back: "<h2>Examples</h2><p>✔ Numbers ending in 5 → squares always end in 25.<br>Example: 35² = 1225.<br><br>✔ Digital root of a perfect square is always 1, 4, 7, or 9.<br><br>✔ Square of a 2-digit number ending in 1 can be found quickly using algebraic identity: (10a+1)² = 100a² + 20a + 1.</p>"
+  },
+
+  {
+    front: "<h2>Pythagorean Triplets</h2><p>a² + b² = c²</p>",
+    back: "<h2>Examples</h2><p>If a² + b² = c² → (a, b, c) is a Pythagorean triplet.<br><br>✔ (3, 4, 5): 3² + 4² = 5².<br>✔ (5, 12, 13).<br><br><b>General Formula:</b> (2m, m²-1, m²+1).<br>For m = 2 → (4, 3, 5).<br>For m = 3 → (6, 8, 10).</p>"
+  },
+
+  {
+    front: "<h2>Square Root</h2><p>Inverse Operation</p>",
+    back: "<h2>Explanation</h2><p>The square root of a number is a value which, when multiplied by itself, gives the original number.<br><br>Example: √25 = 5.<br><br>Each positive number has two roots: +m and -m. But in Class 9, we usually consider only the positive root.<br><br>Note: √0 = 0 and √1 = 1.</p>"
+  },
+
+  {
+    front: "<h2>Methods to Find Roots</h2><p>Different Techniques</p>",
+    back: "<h2>Methods</h2><p>✔ Repeated Subtraction Method → subtract odd numbers until 0.<br>✔ Prime Factorization Method → make pairs of prime factors.<br>✔ Division Method (Long Division) → used for large numbers.<br>✔ Estimation Method → for decimals and approximations.<br><br>Example: √144 by prime factors = 12.</p>"
+  },
+
+  {
+    front: "<h2>Applications</h2><p>Real-Life Uses</p>",
+    back: "<h2>Examples</h2><p>✔ Geometry: Area of a square = side², Diagonal = √2 × side.<br>✔ Algebra: Identities like (a+b)² and (a-b)².<br>✔ Real Life: Construction, physics (distance formula), engineering, architecture.<br><br>Example: To find diagonal of a square tile of side 10 cm → 10√2 cm.</p>"
+  },
+
+  {
+    front: "<h2>Summary</h2><p>Quick Recap</p>",
+    back: "<h2>Key Points</h2><p>✔ Square = n × n.<br>✔ Square root = reverse of squaring.<br>✔ Properties: Even/odd rules, ending digits.<br>✔ Patterns & identities useful for quick calculation.<br>✔ Methods: subtraction, factorization, division, estimation.<br>✔ Applications in geometry, algebra, and real life.</p>"
+  }
+];
+
+
+    let current = 0;
+    const front = document.getElementById("front");
+    const back = document.getElementById("back");
+    const card = document.getElementById("card");
+    const indicator = document.getElementById("indicator");
+    const progress = document.getElementById("progress");
+
+    function showCard(index) {
+      front.innerHTML = cards[index].front;
+      back.innerHTML = cards[index].back;
+      card.classList.remove("flipped");
+      indicator.textContent = `Card ${index+1} / ${cards.length}`;
+      progress.style.width = ((index+1)/cards.length*100) + "%";
+    }
+
+    function nextCard() {
+      current = (current + 1) % cards.length;
+      showCard(current);
+    }
+
+    function prevCard() {
+      current = (current - 1 + cards.length) % cards.length;
+      showCard(current);
+    }
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+    });
+
+    showCard(current);
+  </script>
+</body>
+</html>
