@@ -165,55 +165,55 @@ button:active {
   </div>
 
   <script>
-  const cards = [
+const cards = [
   {
-    front: "<h2>Introduction</h2><p>Overview of Squares & Square Roots</p>",
-    back: "<h2>Details</h2><p>A square of a number means multiplying it by itself. Example: 7² = 49. The square root is the reverse process, i.e. a number which, when multiplied by itself, gives the original number. Example: √64 = 8. <br><br>This chapter covers: properties of square numbers, methods of finding square roots (subtraction, factorization, division, estimation), and applications in geometry, algebra & real life.</p>"
+    front: "<h2>Introduction</h2><p>Squares & Roots Basics</p>",
+    back: "<h2>Details</h2><p>Square = number × itself. Example: 7²=49. <br>Root = reverse. Example: √64=8. <br><br>Covers: properties, methods, and uses in maths & real life.</p>"
   },
 
   {
-    front: "<h2>What is a Square?</h2><p>Definition & Basics</p>",
-    back: "<h2>Examples</h2><p>If a number is multiplied by itself → square number. <br><br>✔ 4² = 4 × 4 = 16 <br>✔ 9² = 9 × 9 = 81 <br><br>Squares are always non-negative. <br><br><b>Note:</b> Negative × Negative = Positive. So (-5)² = 25.</p>"
+    front: "<h2>What is a Square?</h2><p>Definition</p>",
+    back: "<h2>Examples</h2><p>✔ 4² = 16 <br>✔ 9² = 81 <br><br>Squares are always positive. <br>Example: (-5)² = 25.</p>"
   },
 
   {
-    front: "<h2>Properties of Squares</h2><p>Important Rules</p>",
-    back: "<h2>Details</h2><p>✔ Square of an even number is always even.<br>✔ Square of an odd number is always odd.<br>✔ Numbers ending with 2, 3, 7, or 8 can never be perfect squares.<br>✔ Perfect squares only end with 0, 1, 4, 5, 6, 9.<br>✔ There are exactly n perfect squares less than n².<br><br>Example: 25 ✔ is a perfect square, but 27 ✘ is not.</p>"
+    front: "<h2>Properties</h2><p>Key Rules</p>",
+    back: "<h2>Details</h2><p>✔ Even² = Even, Odd² = Odd.<br>✔ Ends with 2,3,7,8 → not perfect squares.<br>✔ Perfect squares end in 0,1,4,5,6,9.</p>"
   },
 
   {
-    front: "<h2>Patterns of Squares</h2><p>Interesting Observations</p>",
-    back: "<h2>Examples</h2><p>✔ Sum of first n odd numbers = n².<br>Example: 1 + 3 + 5 + 7 + 9 = 25 = 5².<br><br>✔ Difference between consecutive squares is always odd.<br>Example: 7² - 6² = 49 - 36 = 13.<br><br>✔ Formula for sum of squares: 1² + 2² + … + n² = n(n+1)(2n+1)/6.</p>"
+    front: "<h2>Patterns</h2><p>Observations</p>",
+    back: "<h2>Examples</h2><p>✔ 1+3+5+…+n = n².<br>✔ Difference of consecutive squares = odd.<br>✔ Sum of squares: n(n+1)(2n+1)/6.</p>"
   },
 
   {
-    front: "<h2>Special Numbers</h2><p>Shortcuts & Tricks</p>",
-    back: "<h2>Examples</h2><p>✔ Numbers ending in 5 → squares always end in 25.<br>Example: 35² = 1225.<br><br>✔ Digital root of a perfect square is always 1, 4, 7, or 9.<br><br>✔ Square of a 2-digit number ending in 1 can be found quickly using algebraic identity: (10a+1)² = 100a² + 20a + 1.</p>"
+    front: "<h2>Special Numbers</h2><p>Tricks</p>",
+    back: "<h2>Examples</h2><p>✔ Numbers ending in 5 → square ends in 25.<br>✔ Digital root of a square = 1,4,7,9.<br>✔ (10a+1)² = 100a²+20a+1.</p>"
   },
 
   {
-    front: "<h2>Pythagorean Triplets</h2><p>a² + b² = c²</p>",
-    back: "<h2>Examples</h2><p>If a² + b² = c² → (a, b, c) is a Pythagorean triplet.<br><br>✔ (3, 4, 5): 3² + 4² = 5².<br>✔ (5, 12, 13).<br><br><b>General Formula:</b> (2m, m²-1, m²+1).<br>For m = 2 → (4, 3, 5).<br>For m = 3 → (6, 8, 10).</p>"
+    front: "<h2>Pythagorean Triplets</h2><p>a²+b²=c²</p>",
+    back: "<h2>Examples</h2><p>✔ (3,4,5), (5,12,13).<br>✔ Formula: (2m, m²-1, m²+1).</p>"
   },
 
   {
-    front: "<h2>Square Root</h2><p>Inverse Operation</p>",
-    back: "<h2>Explanation</h2><p>The square root of a number is a value which, when multiplied by itself, gives the original number.<br><br>Example: √25 = 5.<br><br>Each positive number has two roots: +m and -m. But in Class 9, we usually consider only the positive root.<br><br>Note: √0 = 0 and √1 = 1.</p>"
+    front: "<h2>Square Root</h2><p>Inverse</p>",
+    back: "<h2>Explanation</h2><p>√n → number × itself = n.<br>Example: √25=5.<br>Every +n has 2 roots (+ and -). Usually positive is used.</p>"
   },
 
   {
-    front: "<h2>Methods to Find Roots</h2><p>Different Techniques</p>",
-    back: "<h2>Methods</h2><p>✔ Repeated Subtraction Method → subtract odd numbers until 0.<br>✔ Prime Factorization Method → make pairs of prime factors.<br>✔ Division Method (Long Division) → used for large numbers.<br>✔ Estimation Method → for decimals and approximations.<br><br>Example: √144 by prime factors = 12.</p>"
+    front: "<h2>Finding Roots</h2><p>Techniques</p>",
+    back: "<h2>Methods</h2><p>✔ Subtraction<br>✔ Factorization<br>✔ Long Division<br>✔ Estimation<br>Example: √144=12.</p>"
   },
 
   {
-    front: "<h2>Applications</h2><p>Real-Life Uses</p>",
-    back: "<h2>Examples</h2><p>✔ Geometry: Area of a square = side², Diagonal = √2 × side.<br>✔ Algebra: Identities like (a+b)² and (a-b)².<br>✔ Real Life: Construction, physics (distance formula), engineering, architecture.<br><br>Example: To find diagonal of a square tile of side 10 cm → 10√2 cm.</p>"
+    front: "<h2>Applications</h2><p>Uses</p>",
+    back: "<h2>Examples</h2><p>✔ Geometry: Area & diagonal.<br>✔ Algebra: Identities.<br>✔ Real Life: Construction, physics, design.</p>"
   },
 
   {
     front: "<h2>Summary</h2><p>Quick Recap</p>",
-    back: "<h2>Key Points</h2><p>✔ Square = n × n.<br>✔ Square root = reverse of squaring.<br>✔ Properties: Even/odd rules, ending digits.<br>✔ Patterns & identities useful for quick calculation.<br>✔ Methods: subtraction, factorization, division, estimation.<br>✔ Applications in geometry, algebra, and real life.</p>"
+    back: "<h2>Key Points</h2><p>✔ Square = n×n.<br>✔ Root = reverse.<br>✔ Rules: even/odd, last digit check.<br>✔ Patterns & formulas help.<br>✔ Methods: subtraction, factorization, division, estimation.<br>✔ Many real-life applications.</p>"
   }
 ];
 
